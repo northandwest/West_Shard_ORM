@@ -116,9 +116,14 @@ public class ClassObjectConverter {
 				if (tran) {
 					continue;
 				}
-				Column column = (Column) field.getAnnotation(Column.class);
+				
+				try {
+					Column column = (Column) field.getAnnotation(Column.class);
 
-				filedMap.put(key,column.name());
+					filedMap.put(key,column.name());
+				} catch (Exception e) {
+					logger.error("getFiledMap key:{} error",key,e);
+				}
 			}
 
 		} catch (Exception e) {

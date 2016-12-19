@@ -62,9 +62,13 @@ public abstract class BaseTableInfo {
 					continue;
 				}
 
-				Column column = (Column) field.getAnnotation(Column.class);
+				try {
+					Column column = (Column) field.getAnnotation(Column.class);
 
-				data.add(column.name());
+					data.add(column.name());
+				} catch (Exception e) {
+					logger.error("getField key:{} filed{} error", key,field,e);
+				}
 			}
 		} catch (Exception e) {
 			logger.error("getFields error", e);

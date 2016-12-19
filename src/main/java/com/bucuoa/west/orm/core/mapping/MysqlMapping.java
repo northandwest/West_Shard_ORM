@@ -190,8 +190,9 @@ public class MysqlMapping implements Mapping {
 				if (!field.equals(pk)) {
 
 					// String clazzField = field;
+					String clazzField = ClassObjectConverter.fieldToClazzProperties(field);
 
-					Object value = beanValue.get(field);
+					Object value = beanValue.get(clazzField);
 					if (value != null && !value.equals("")) {
 						map.put(field, value);
 					}
