@@ -3,8 +3,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.bucuoa.west</groupId>
-	<artifactId>west-core</artifactId>
-	<version>0.2.20-SNAPSHOT</version>
+	<artifactId>WestShardORM</artifactId>
+	<version>0.2.29-SNAPSHOT</version>
 	<name>west :: Main :: Core</name>
 
 	<properties>
