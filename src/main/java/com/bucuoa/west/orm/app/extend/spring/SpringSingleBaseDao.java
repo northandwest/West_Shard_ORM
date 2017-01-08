@@ -216,6 +216,14 @@ public class SpringSingleBaseDao<T, PK extends Serializable>  extends WestDao<T,
 //		logger.info("执行sql : " + sql + "use:" + (end - start) + "ms");
 		return queryListMap;
 	}
+	
+	public int queryCount(String sql) {
+
+		int count = excetueManager.queryCount(sql);
+//		logger.info("执行sql : " + sql + "use:" + (end - start) + "ms");
+		return count;
+	}
+	
 
 	public <T> List<T> queryListBean(T t,String sql) {
 		List<T> list = null;

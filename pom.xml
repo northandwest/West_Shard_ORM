@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.bucuoa.west</groupId>
 	<artifactId>WestShardORM</artifactId>
-	<version>0.2.29-SNAPSHOT</version>
+	<version>0.2.31-SNAPSHOT</version>
 	<name>west :: Main :: Core</name>
 
 	<properties>
@@ -71,23 +71,19 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
+			</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
+			</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
+			</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
+			</dependency>
 
 
 		<dependency>
