@@ -14,7 +14,7 @@ public interface ISingleBaseDao<T, PK extends Serializable> extends IBaseDao<T, 
 
 	boolean deleteEntityById(PK id) throws Exception;
 
-	List<Map<String, String>> queryListMap(String sql);
+	List<Map<String, Object>> queryListMap(String sql);
 
 	List<T> findEntityList(List<Expression> where, OrderBy orderBy, WPage page);
 

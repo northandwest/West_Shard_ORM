@@ -59,10 +59,12 @@ public abstract class SingleBaseService<T, PK extends Serializable> {
 		return getDao().updateEntityIn(t, ids);
 	}
 
-	// public List<T> findEntityList(String[] column, List<Expression> where,
-	// OrderBy orderBy, WPage page) {
-	// return getDao().findEntityList(column, where, orderBy, page);
-	//
-	// }
+//	 public List<T> findEntityList(String[] column, List<Expression> where,
+//	 OrderBy orderBy, WPage page) {
+//		 
+////		 getDao().queryListMap(sql)
+//	 return getDao().findEntityList(column, where, orderBy, page);
+//	
+//	 }
 
 }

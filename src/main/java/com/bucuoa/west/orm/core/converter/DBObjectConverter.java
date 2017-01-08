@@ -83,24 +83,24 @@ public class DBObjectConverter {
 		return list;
 	}
 
-	public static List<Map<String, String>> getListMap(ResultSet rst, List<String> columns) throws SQLException {
+	public static List<Map<String, Object>> getListMap(ResultSet rst, List<String> columns) throws SQLException {
 
-		List<Map<String, String>> list = new ArrayList<Map<String, String>>();
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 
 		while (rst.next()) {
 
-			Map<String, String> map = new HashMap<String, String>();
+			Map<String, Object> map = new HashMap<String, Object>();
 			for (String column : columns) {
 
 				try {
 
-					String temp = rst.getString(column);
+					Object temp = rst.getObject(column);
 					if (temp != null) {
+						column = ClassObjectConverter.fieldToClazzProperties(column);
 						map.put(column, temp);
 					}
 				} catch (SQLException e) {
 					logger.error("getListMap", e);
-
 				}
 
 			}

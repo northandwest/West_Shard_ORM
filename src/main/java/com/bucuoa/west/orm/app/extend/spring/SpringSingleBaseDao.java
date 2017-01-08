@@ -205,8 +205,8 @@ public class SpringSingleBaseDao<T, PK extends Serializable>  extends WestDao<T,
 		return queryList;
 	}
 
-	public List<Map<String, String>> queryListMap(String sql) {
-		List<Map<String, String>> queryListMap = null;
+	public List<Map<String, Object>> queryListMap(String sql) {
+		List<Map<String, Object>> queryListMap = null;
 		long start = System.currentTimeMillis();
 
 		queryListMap = excetueManager.queryListMap(sql);

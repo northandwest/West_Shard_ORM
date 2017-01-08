@@ -347,14 +347,14 @@ public class ExecuteManager<T, PK> {
 	 * @param sql
 	 * @return
 	 */
-	public <T> List<Map<String, String>> queryListMap(String sql) {
+	public <T> List<Map<String, Object>> queryListMap(String sql) {
 		DbMasterOrSlaveHolder.initSlave();
 
 		Connection conn = null;
 		PreparedStatement pst = null;
 		ResultSet rst = null;
 
-		List<Map<String, String>> list = new ArrayList<Map<String, String>>();
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 
 		Session session = sessionFactory.getSession();
 		try {
