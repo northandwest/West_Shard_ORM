@@ -122,7 +122,7 @@ public class ClassObjectConverter {
 
 					filedMap.put(key,column.name());
 				} catch (Exception e) {
-					logger.error("getFiledMap key:{} error",key,e);
+					logger.error("getFiledMap key:[{}] error",key,e);
 				}
 			}
 
