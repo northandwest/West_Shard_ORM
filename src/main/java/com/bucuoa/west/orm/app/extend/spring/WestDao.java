@@ -136,7 +136,11 @@ public abstract class WestDao<T, PK extends Serializable> {
 
 	public int getEntityCount(List<Expression> wheres) throws Exception {
 
-		String selectCountSql = SQLFactory.selectCountSql(getClassz(), wheres);
+		if(wheres != null && wheres.size() < 1)
+		{
+			return 0;
+		}
+		String selectCountSql = SQLFactory.selectCountSql(getClassz().newInstance(), wheres);
 		int queryCount = 0;
 		long start = System.currentTimeMillis();
 
