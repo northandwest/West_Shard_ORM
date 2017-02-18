@@ -43,14 +43,6 @@ public abstract class WestDao<T, PK extends Serializable> {
 		return id;
 	}
 
-	/**
-	 * 保存实体对象
-	 * 
-	 * @param entity
-	 *            实体对象
-	 * @return 实体对象的id
-	 * @throws Exception
-	 */
 	@SuppressWarnings("unchecked")
 	public T saveEntity(T entity) throws Exception {
 		String insertSql = SQLFactory.insertSql(entity);
@@ -75,12 +67,6 @@ public abstract class WestDao<T, PK extends Serializable> {
 		return entity;
 	}
 
-	/**
-	 * 属性没有值的不修改
-	 * 
-	 * @param entity
-	 * @throws Exception
-	 */
 	public void updateEntity(T entity) throws Exception {
 		long start = System.currentTimeMillis();
 		String updateSql = SQLFactory.updateSql(entity);
@@ -89,7 +75,6 @@ public abstract class WestDao<T, PK extends Serializable> {
 
 		long end = System.currentTimeMillis();
 
-//		logger.info("执行sql:{} use:{}ms", updateSql, (end - start));
 	}
 	
 	
@@ -106,14 +91,7 @@ public abstract class WestDao<T, PK extends Serializable> {
 	{
 		return excetueManager.getSessionFactory().getSession().getConnection();
 	}
-	/**
-	 * 根据sql语句查询所有符合条件的实体数（没有使用防注入的方法）
-	 * 
-	 * @param condition
-	 *            传入的sql。
-	 * @return
-	 * @throws Exception
-	 */
+
 	public int getEntityCount(T t) throws Exception {
 
 		String sql = SQLFactory.selectCountSql(t, null);
@@ -153,14 +131,6 @@ public abstract class WestDao<T, PK extends Serializable> {
 		return queryCount;
 	}
 
-	/**
-	 * 根据id删除实体对象（物理删除）
-	 * 
-	 * @param id
-	 *            实体对象的id
-	 * @return 是否删除成功; true：删除成功; false：删除失败
-	 * @throws Exception
-	 */
 	public boolean deleteEntityBy(T t) throws Exception {
 		List<Expression> wheres = new ArrayList<Expression>();
 		long end1 = System.currentTimeMillis();

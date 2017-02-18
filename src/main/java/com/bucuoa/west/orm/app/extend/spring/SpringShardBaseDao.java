@@ -25,9 +25,6 @@ import com.bucuoa.west.orm.core.uitls.AnnoationUtil;
  * west和应用的接口类 项目只需要继承本类就可以实现west提供的功能 用户也可以自己实现本类 只需要注入ExcetueManager即可
  * 
  * @author jake
- *
- * @param <T>
- * @param <PK>
  */
 @Component
 public class SpringShardBaseDao<T, PK extends Serializable> extends WestDao<T, PK> {
@@ -54,14 +51,6 @@ public class SpringShardBaseDao<T, PK extends Serializable> extends WestDao<T, P
 		return classz;
 	}
 
-	/**
-	 * 根据实体Id查询指定实体对象
-	 * 
-	 * @param id
-	 *            实体对象的id
-	 * @return 返回指定实体对象
-	 * @throws Exception
-	 */
 	public T findEntityById(T t) throws Exception {
 			
 		List<Expression> wheres = new ArrayList<Expression>();

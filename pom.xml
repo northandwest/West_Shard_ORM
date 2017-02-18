@@ -7,7 +7,7 @@
 	<version>0.3-RELEASE</version>
 	<packaging>jar</packaging>
 	<name>West :: ORM :: Core</name>
-	<description>java mysql ORM!</description>
+	<description>West ORM</description>
 	<url>https://github.com/northandwest/WestShardORM-core</url>
 
 	<properties>

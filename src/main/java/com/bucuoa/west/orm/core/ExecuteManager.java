@@ -66,12 +66,6 @@ public class ExecuteManager<T, PK> {
 		return flag;
 	}
 
-	/**
-	 * 生成有返回值的更新对象的sql
-	 * 
-	 * @param sql
-	 * @return
-	 */
 	@SuppressWarnings("unchecked")
 	public PK executeUpdateSql(String sql) {
 		DbMasterOrSlaveHolder.initMaster();
@@ -119,12 +113,6 @@ public class ExecuteManager<T, PK> {
 		return id;
 	}
 
-	/**
-	 * 生成没有返回值的更新对象的sql
-	 * 
-	 * @param sql
-	 * @return
-	 */
 	public boolean executeUpdateSqlNoID(String sql) {
 		DbMasterOrSlaveHolder.initMaster();
 
@@ -159,12 +147,7 @@ public class ExecuteManager<T, PK> {
 		return sussess;
 	}
 
-	/**
-	 * 用户单一值结果集查询
-	 * 
-	 * @param sql
-	 * @return
-	 */
+
 	public int queryCount(String sql, Object... objs) {
 		DbMasterOrSlaveHolder.initSlave();
 
@@ -207,12 +190,7 @@ public class ExecuteManager<T, PK> {
 		return result;
 	}
 
-	/**
-	 * 用户单一值结果集查询
-	 * 
-	 * @param sql
-	 * @return
-	 */
+
 	public int queryCount(String sql) {
 		DbMasterOrSlaveHolder.initSlave();
 
@@ -252,13 +230,7 @@ public class ExecuteManager<T, PK> {
 		return result;
 	}
 
-	/**
-	 * 用于唯一的对象查询 如果有重复取第一个值
-	 * 
-	 * @param sql
-	 * @param t
-	 * @return
-	 */
+
 	public <T> T queryOne(String sql, Class<T> t) {
 		DbMasterOrSlaveHolder.initSlave();
 
@@ -296,13 +268,7 @@ public class ExecuteManager<T, PK> {
 		return obj;
 	}
 
-	/**
-	 * 对象列表查询
-	 * 
-	 * @param sql
-	 * @param t
-	 * @return
-	 */
+
 	@SuppressWarnings("hiding")
 	public <T> List<T> queryList(String sql, Class<T> clazz) {
 		DbMasterOrSlaveHolder.initSlave();
@@ -341,12 +307,6 @@ public class ExecuteManager<T, PK> {
 		return listBean;
 	}
 
-	/**
-	 * 对象结果用MAP封装的方法 用户多表查询
-	 * 
-	 * @param sql
-	 * @return
-	 */
 	public <T> List<Map<String, Object>> queryListMap(String sql) {
 		DbMasterOrSlaveHolder.initSlave();
 
@@ -384,12 +344,7 @@ public class ExecuteManager<T, PK> {
 		return list;
 	}
 
-	/**
-	 * 批量执行
-	 * 
-	 * @param sql
-	 * @param argsList
-	 */
+
 	public void addBatch(String sql, List<String[]> argsList) {
 		DbMasterOrSlaveHolder.initMaster();
 
@@ -426,12 +381,7 @@ public class ExecuteManager<T, PK> {
 		}
 	}
 
-	/**
-	 * 根据对象主键删除对象
-	 * 
-	 * @param classk
-	 * @param id
-	 */
+
 	public void deleteById(Class<?> classk, Object id) {
 		DbMasterOrSlaveHolder.initMaster();
 
@@ -469,12 +419,7 @@ public class ExecuteManager<T, PK> {
 		}
 	}
 
-	/**
-	 * 根据条件删除对象
-	 * 
-	 * @param classk
-	 * @param condtion
-	 */
+
 	public void deleteBy(String sql) {
 		DbMasterOrSlaveHolder.initMaster();
 
