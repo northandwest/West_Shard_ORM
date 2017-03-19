@@ -69,7 +69,9 @@ public class DBObjectConverter {
 
 					} else {
 						Object tempStr = rst.getString(filedname);
-						BeanUtils.setProperty(item, objectFileName, tempStr);
+						if(tempStr != null){
+							BeanUtils.setProperty(item, objectFileName, tempStr);
+						}
 					}
 
 				} catch (SQLException e) {
