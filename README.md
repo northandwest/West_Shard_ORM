@@ -5,7 +5,7 @@ https://github.com/west-orm
 ##多个数据源动态指派DataSource
 
 ##一个服务
-#最新版本
+# 最新版本
 		<west.version>0.3.4-SNAPSHOT</west.version>
 
 		<dependency>
