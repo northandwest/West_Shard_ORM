@@ -1,5 +1,8 @@
 package com.bucuoa.west.orm.app.common;
 
+import java.math.BigDecimal;
+import java.util.Date;
+
 import com.bucuoa.west.orm.core.uitls.WStringUtils;
 
 public class Expression {
@@ -10,7 +13,7 @@ public class Expression {
 		this.value = value;
 		this.type = ExpressionType.AND.getType();
 	}
-	
+
 	public Expression(String name, Object value) {
 		this.name = name;
 		this.condition = "=";
@@ -63,13 +66,36 @@ public class Expression {
 	}
 
 	public String toString() {
-		
-		return  WStringUtils.join(" "," ",name,condition,String.valueOf(value));
+		String valuz = "";
+		if (value instanceof String) {
+			// 兼容老版本拼单引号
+			String temp = value.toString();
+			temp = temp.trim();
+			if (temp != null && temp.startsWith("'") && temp.endsWith("'")) {
+				valuz = temp;
+			} else {
+				valuz = "'" + value + "'";
+			}
+		} else if (value instanceof Integer) {
+			int doubleValue = ((Integer) value).intValue();
+			valuz = String.valueOf(doubleValue);
+		} else if (value instanceof Double) {
+			double doubleValue = ((Double) value).doubleValue();
+			valuz = String.valueOf(doubleValue);
+		} else if (value instanceof Long) {
+			long longValue = ((Long) value).longValue();
+			valuz = String.valueOf(longValue);
+		} else if (value instanceof BigDecimal) {
+			long longValueExact = ((BigDecimal) value).longValueExact();
+			valuz = String.valueOf(longValueExact);
+		}
+
+		return WStringUtils.join(" ", " ", name, condition, valuz);
 	}
-	
+
 	public String toParameterString() {
-		
-		return WStringUtils.join(" "," ",name,condition,"?");
+
+		return WStringUtils.join(" ", " ", name, condition, "?");
 	}
 
 }

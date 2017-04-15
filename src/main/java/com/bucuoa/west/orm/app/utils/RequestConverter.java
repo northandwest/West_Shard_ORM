@@ -8,7 +8,6 @@ import java.util.Map;
 
 import com.bucuoa.west.orm.app.common.Expression;
 import com.bucuoa.west.orm.app.common.WPage;
-import com.bucuoa.west.orm.app.convert.ConditionConverter;
 
 public class RequestConverter {
 	private Map<String,Object> request;
@@ -38,12 +37,13 @@ public class RequestConverter {
 					String tt[] = key.split("-");
 					String name = tt[1];
 					String type = tt[3];
-					
-					if(type.equals("S"))
+					//数值化转换
+					Object tempk = null ;
+					if(!type.equals("S"))
 					{
-						value = ConditionConverter.STRING.convert(value);
+						tempk = Long.parseLong(value);
 					}
-					Expression and = new Expression(name,value);
+					Expression and = new Expression(name,tempk);
 					paralist.add(and);
 				}
 			
