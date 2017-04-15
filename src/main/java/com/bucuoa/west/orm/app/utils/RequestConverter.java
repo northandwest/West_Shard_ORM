@@ -1,5 +1,6 @@
 package com.bucuoa.west.orm.app.utils;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -41,7 +42,7 @@ public class RequestConverter {
 					Object tempk = null ;
 					if(!type.equals("S"))
 					{
-						tempk = Long.parseLong(value);
+						tempk = new BigDecimal(value);
 					}
 					Expression and = new Expression(name,tempk);
 					paralist.add(and);
