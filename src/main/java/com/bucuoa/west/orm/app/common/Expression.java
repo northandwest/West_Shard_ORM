@@ -66,6 +66,11 @@ public class Expression {
 	}
 
 	public String toString() {
+		if(value == null)
+		{
+			return "";
+		}
+		
 		String valuz = "";
 		if (value instanceof String) {
 			// 兼容老版本拼单引号
