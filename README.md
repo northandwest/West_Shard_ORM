@@ -13,3 +13,9 @@ https://github.com/west-orm
 			<artifactId>west-shard-orm</artifactId>
 			<version>${west.version}</version>
 		</dependency>
+# 使用步骤
+1. 配置数据源
+2. spring注入
+3. 生成实体类
+4. 生成dao类
+5. 生成Service类
