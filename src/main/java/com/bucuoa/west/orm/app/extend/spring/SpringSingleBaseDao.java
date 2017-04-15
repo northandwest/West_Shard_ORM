@@ -103,8 +103,8 @@ public class SpringSingleBaseDao<T, PK extends Serializable>  extends WestDao<T,
 //		List<Expression> wheres = new ArrayList<Expression>();
 //		Expression expression = new Expression(filed, value);
 //		wheres.add(expression);
-//
-//		String selectSql = SQLConverter.selectSql(classz, wheres);
+//		excetueManager.queryOne(sql, t);
+//		String selectSql = excetueManager.selectSql(classz, wheres);
 //		long start = System.currentTimeMillis();
 //
 //		T queryOne = excetueManager.queryOne(selectSql, classz);
@@ -215,6 +215,7 @@ public class SpringSingleBaseDao<T, PK extends Serializable>  extends WestDao<T,
 	}
 	
 
+	@SuppressWarnings({ "unchecked", "hiding" })
 	public <T> List<T> queryListBean(T t,String sql) {
 		List<T> list = null;
 		long start = System.currentTimeMillis();
