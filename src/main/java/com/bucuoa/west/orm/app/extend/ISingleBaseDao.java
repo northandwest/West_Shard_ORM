@@ -22,7 +22,7 @@ public interface ISingleBaseDao<T, PK extends Serializable> extends IBaseDao<T, 
 
 	List<T> findEntityList(OrderBy orderBy, WPage page);
 
-	<T> List<T> queryListBean(T t, String sql);
+	List<T> queryListBean(Class<T> clazz, String sql);
 	
 	int getEntityCount(T t) throws Exception;
 

@@ -121,7 +121,7 @@ public class DBObjectConverter {
 		int numCols = metaData.getColumnCount();
 
 		for (int i = 1; i <= numCols; i++) {
-			String columnName = metaData.getColumnName(i);
+			String columnName = metaData.getColumnLabel(i);
 			columns.add(columnName);
 		}
 

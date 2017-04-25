@@ -33,6 +33,20 @@ public abstract class SingleBaseService<T, PK extends Serializable> {
 	public T findEntityById(PK id) throws Exception {
 		return getDao().findEntityById(id);
 	}
+	
+	public T findEntityBy(T entity) throws Exception {
+		List<T> list = getDao().findListBy(entity);
+		if(list != null && list.size() > 0)
+		{
+			return list.get(0);
+		}
+		return null;
+	}
+	
+	public List<T> findEntityListBy(T entity) throws Exception {
+		List<T> list = getDao().findListBy(entity);
+		return list;
+	}
 
 	public boolean deleteEntityById(PK id) throws Exception {
 		return getDao().deleteEntityById(id);
@@ -58,7 +72,11 @@ public abstract class SingleBaseService<T, PK extends Serializable> {
 	{
 		return getDao().updateEntityIn(t, ids);
 	}
-
+	
+	public List<T> queryListBean(Class<T> clazz, String sql) 
+	{
+		return getDao().queryListBean(clazz, sql);
+	}
 //	 public List<T> findEntityList(String[] column, List<Expression> where,
 //	 OrderBy orderBy, WPage page) {
 //		 

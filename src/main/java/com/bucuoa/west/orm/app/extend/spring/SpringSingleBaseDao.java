@@ -23,7 +23,7 @@ import com.bucuoa.west.orm.core.mapping.SQLFactory;
  * @author jake
  */
 @Component
-public class SpringSingleBaseDao<T, PK extends Serializable>  extends WestDao<T, PK> {
+public class SpringSingleBaseDao<T, PK extends Serializable> extends WestDao<T, PK> {
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	private Class<T> classz;
@@ -37,101 +37,99 @@ public class SpringSingleBaseDao<T, PK extends Serializable>  extends WestDao<T,
 		return classz;
 	}
 
-	@SuppressWarnings("unchecked")
 	public T findEntityById(PK id) throws Exception {
-			
+
 		List<Expression> wheres = new ArrayList<Expression>();
 		String tablePKField = super.getTablePKField();
 		Expression expression = new Expression(tablePKField, id);
 		wheres.add(expression);
-		
+
 		String setPK = getTablePKSetMethod();
-		
+
 		T newInstance = classz.newInstance();
 		classz.getMethod(setPK, id.getClass()).invoke(newInstance, id);
-		
-		String selectSql = SQLFactory.selectSql(newInstance,wheres);
-		
+
+		String selectSql = SQLFactory.selectSql(newInstance, wheres);
+
 		long start = System.currentTimeMillis();
 
 		T queryOne = excetueManager.queryOne(selectSql, classz);
 
 		long end = System.currentTimeMillis();
 
-//		logger.info("执行sql : {} use:{}ms",selectSql,(end - start));
+		logger.trace("执行sql : {} use:{}ms", selectSql, (end - start));
 		return queryOne;
 	}
 
 	@SuppressWarnings({ "unchecked" })
 	public <T> List<T> findListBy(T t) throws Exception {
-		
+
 		Class<T> classz2 = (Class<T>) this.classz;
-		
-		List<T> queryList = (List<T>)findListBy(t,classz2);
+
+		List<T> queryList = (List<T>) findListBy(t, classz2);
 
 		return queryList;
 	}
-	
-	public <T> List<T> findListBy(T t,Class<T> clazz) throws Exception {
-		
+
+	public <T> List<T> findListBy(T t, Class<T> clazz) throws Exception {
+
 		List<Expression> wheres = new ArrayList<Expression>();
 
 		Map<String, Object> conditions = SQLFactory.getNotNullFields(t);
-		
+
 		Set<Entry<String, Object>> entrySet = conditions.entrySet();
-		
-		for(Entry<String, Object> entry : entrySet)
-		{
+
+		for (Entry<String, Object> entry : entrySet) {
 			Expression expression = new Expression(entry.getKey().toString(), entry.getValue());
 			wheres.add(expression);
 		}
-		
-		String selectSql = SQLFactory.selectSql(t,wheres);
-		
+
+		String selectSql = SQLFactory.selectSql(t, wheres);
+
 		long start = System.currentTimeMillis();
 
 		List<T> queryList = (List<T>) excetueManager.queryList(selectSql, clazz);
 
 		long end = System.currentTimeMillis();
 
-//		logger.info("执行sql : {} use:{}ms",selectSql,(end - start));
+		logger.trace("执行sql : {} use:{}ms", selectSql, (end - start));
 		return queryList;
 	}
-	
-//	public T findEntityBy(String filed, String value) throws Exception {
-//
-//		List<Expression> wheres = new ArrayList<Expression>();
-//		Expression expression = new Expression(filed, value);
-//		wheres.add(expression);
-//		excetueManager.queryOne(sql, t);
-//		String selectSql = excetueManager.selectSql(classz, wheres);
-//		long start = System.currentTimeMillis();
-//
-//		T queryOne = excetueManager.queryOne(selectSql, classz);
-//
-//		long end = System.currentTimeMillis();
-//
-//		logger.info("执行sql : " + selectSql + "use:" + (end - start) + "ms");
-//		return queryOne;
-//	}
 
-	
-	
+	// public T findEntityBy(String filed, String value) throws Exception {
+	//
+	// List<Expression> wheres = new ArrayList<Expression>();
+	// Expression expression = new Expression(filed, value);
+	// wheres.add(expression);
+	// excetueManager.queryOne(sql, t);
+	// String selectSql = excetueManager.selectSql(classz, wheres);
+	// long start = System.currentTimeMillis();
+	//
+	// T queryOne = excetueManager.queryOne(selectSql, classz);
+	//
+	// long end = System.currentTimeMillis();
+	//
+	// logger.info("执行sql : " + selectSql + "use:" + (end - start) + "ms");
+	// return queryOne;
+	// }
+
 	public boolean deleteEntityById(PK id) throws Exception {
 		T newInstance = classz.newInstance();
-		
+
 		String setPK = getTablePKSetMethod();
 		classz.getMethod(setPK, id.getClass()).invoke(newInstance, id);
-		
-		String deleteSql = SQLFactory.deleteSql(newInstance);//.deleteSqlBy(classz, condition);
+
+		String deleteSql = SQLFactory.deleteSql(newInstance);// .deleteSqlBy(classz,
+																// condition);
 		long start = System.currentTimeMillis();
 
 		excetueManager.deleteBy(deleteSql);
 		long end = System.currentTimeMillis();
 
-//		logger.info("执行sql : " + deleteSql + "use:" + (end - start) + "ms");
+		logger.trace("执行sql : " + deleteSql + "use:" + (end - start) + "ms");
 		return true;
 	}
+
 	public boolean deleteEntityByCondition(List<Expression> condition) throws Exception {
 
 		String deleteSql = SQLFactory.deleteSqlBy(classz, condition);
@@ -140,7 +138,7 @@ public class SpringSingleBaseDao<T, PK extends Serializable>  extends WestDao<T,
 		excetueManager.deleteBy(deleteSql);
 		long end = System.currentTimeMillis();
 
-		logger.info("执行sql : " + deleteSql + "use:" + (end - start) + "ms");
+		logger.trace("执行sql : " + deleteSql + "use:" + (end - start) + "ms");
 		return true;
 	}
 
@@ -163,7 +161,7 @@ public class SpringSingleBaseDao<T, PK extends Serializable>  extends WestDao<T,
 			queryList = excetueManager.queryList(selectSql, classz);
 			long end = System.currentTimeMillis();
 
-//			logger.info("执行sql : " + selectSql + "use:" + (end - start) + "ms");
+			logger.trace("执行sql : " + selectSql + "use:" + (end - start) + "ms");
 		} catch (Exception e) {
 		}
 
@@ -173,9 +171,8 @@ public class SpringSingleBaseDao<T, PK extends Serializable>  extends WestDao<T,
 
 		return queryList;
 	}
-	
-	public List<T> findEntityList(OrderBy orderBy, WPage page)
-	{
+
+	public List<T> findEntityList(OrderBy orderBy, WPage page) {
 		List<T> queryList = null;
 		try {
 			String selectSql = SQLFactory.selectSql(classz, orderBy, page);
@@ -184,7 +181,7 @@ public class SpringSingleBaseDao<T, PK extends Serializable>  extends WestDao<T,
 			queryList = excetueManager.queryList(selectSql, classz);
 			long end = System.currentTimeMillis();
 
-//			logger.info("执行sql : " + selectSql + "use:" + (end - start) + "ms");
+			logger.trace("执行sql : " + selectSql + "use:" + (end - start) + "ms");
 		} catch (Exception e) {
 		}
 
@@ -195,6 +192,28 @@ public class SpringSingleBaseDao<T, PK extends Serializable>  extends WestDao<T,
 		return queryList;
 	}
 
+	public int queryCount(String sql) {
+		long start = System.currentTimeMillis();
+
+		int count = excetueManager.queryCount(sql);
+
+		long end = System.currentTimeMillis();
+
+		logger.trace("执行sql : " + sql + "use:" + (end - start) + "ms");
+		return count;
+	}
+
+	public List<T> queryListBean(Class<T> clazz, String sql) {
+		List<T> list = null;
+		long start = System.currentTimeMillis();
+
+		list = (List<T>) excetueManager.queryList(sql, clazz);
+		long end = System.currentTimeMillis();
+
+		logger.trace("执行sql : " + sql + "use:" + (end - start) + "ms");
+		return list;
+	}
+	
 	public List<Map<String, Object>> queryListMap(String sql) {
 		List<Map<String, Object>> queryListMap = null;
 		long start = System.currentTimeMillis();
@@ -203,29 +222,14 @@ public class SpringSingleBaseDao<T, PK extends Serializable>  extends WestDao<T,
 
 		long end = System.currentTimeMillis();
 
-//		logger.info("执行sql : " + sql + "use:" + (end - start) + "ms");
+		logger.trace("执行sql : " + sql + "use:" + (end - start) + "ms");
 		return queryListMap;
 	}
 	
-	public int queryCount(String sql) {
-
-		int count = excetueManager.queryCount(sql);
-//		logger.info("执行sql : " + sql + "use:" + (end - start) + "ms");
-		return count;
+	public boolean updateEntityIn(T t,Long[] ids) throws Exception{
+		//todo 未实现
+		return true;
 	}
-	
 
-	@SuppressWarnings({ "unchecked", "hiding" })
-	public <T> List<T> queryListBean(T t,String sql) {
-		List<T> list = null;
-		long start = System.currentTimeMillis();
-
-		Class<? extends Object> class1 = t.getClass();
-		list = (List<T>) excetueManager.queryList(sql, class1);
-		long end = System.currentTimeMillis();
-
-//		logger.info("执行sql : " + sql + "use:" + (end - start) + "ms");		
-		return list;
-	}
 
 }
