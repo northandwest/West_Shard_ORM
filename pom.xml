@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.bucuoa.west</groupId>
 	<artifactId>west-shard-orm</artifactId>
-	<version>0.3.5-RELEASE</version>
+	<version>0.3.6-RELEASE</version>
 	<packaging>jar</packaging>
 	<name>West :: ORM :: Core</name>
 	<description>West ORM</description>

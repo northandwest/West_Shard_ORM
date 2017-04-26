@@ -1,5 +1,6 @@
 package com.bucuoa.west.orm.core.mapping;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -55,7 +56,7 @@ public class MysqlMapping implements Mapping {
 
 					Object value = beanValue.get(clazzField);
 					if (value != null) {
-						String convert = TypeConvert.convert(value);
+						String convert = TypeConvert.convert(value,",");
 						sets.append(key).append("=");
 						sets.append(convert);
 					}
@@ -104,7 +105,7 @@ public class MysqlMapping implements Mapping {
 //todo shardkey 不能作为set里修改值
 					Object value = beanValue.get(clazzField);
 					if (value != null) {
-						String convert = TypeConvert.convert(value);
+						String convert = TypeConvert.convert(value,",");
 						sets.append(key).append("=");
 						sets.append(convert);
 					}
@@ -154,7 +155,7 @@ public class MysqlMapping implements Mapping {
 				if (value != null) {
 					param.append(key).append(",");
 
-					String convert = TypeConvert.convert(value);
+					String convert = TypeConvert.convert(value,",");
 					values.append(convert);
 				}
 			}
@@ -215,19 +216,47 @@ public class MysqlMapping implements Mapping {
 		DeleteBuilder delete = new DeleteBuilder(tableName);
 
 		String pk = tableInfo.getPk();
+		List<String> fields = tableInfo.getFields();
 
 		Map<String, Object> beanValue = ClassObjectConverter.getBeanValue(t);
 
 		try {
 
-			String clazzField = ClassObjectConverter.fieldToClazzProperties(pk);
-
-			Object pkValue = beanValue.get(clazzField);
 			StringBuilder where = new StringBuilder();
+			//主键不为空直接删掉主键 主键为空 按照属性拼where条件
 
-			where.append(pk).append("=").append(pkValue);
+			String clazzField = ClassObjectConverter.fieldToClazzProperties(pk);
+			Object pkValue = beanValue.get(clazzField);
+			if(pkValue != null){
+					where.append(pk).append("=").append(pkValue);
+			}else  
+			{
 
-			delete.setWhere(where.toString());
+				int index = 0;
+				for (String key : fields) {
+
+					if (!key.equals(pk)) {
+						String clazzField2 = ClassObjectConverter.fieldToClazzProperties(key);
+
+						Object value = beanValue.get(clazzField2);
+						if (value != null) {
+							String convert = TypeConvert.convert(value," ");
+							
+							if(index != 0)
+							{
+								where.append(" and ");
+							}
+							where.append(key).append("=");
+							where.append(convert);
+							
+							index ++;
+						}
+					}
+				}
+
+				delete.setWhere(where.toString());
+			}
+
 
 		} catch (Exception e) {
 			logger.error("buildDelete error", e);

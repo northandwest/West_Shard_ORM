@@ -132,18 +132,11 @@ public abstract class WestDao<T, PK extends Serializable> {
 	}
 
 	public boolean deleteEntityBy(T t) throws Exception {
-		List<Expression> wheres = new ArrayList<Expression>();
 		long end1 = System.currentTimeMillis();
 
-		Map<String, Object> conditions = SQLFactory.getNotNullFields(t);
-
-		Set<Entry<String, Object>> entrySet = conditions.entrySet();
-
-		for (Entry<String, Object> entry : entrySet) {
-			Expression expression = new Expression(entry.getKey().toString(), entry.getValue());
-			wheres.add(expression);
-		}
-		String selectSql = SQLFactory.deleteSql(t);
+//		Map<String, Object> conditions = SQLFactory.getNotNullFields(t);
+	
+		String selectSql = 	SQLFactory.deleteSql(t);
 		long start = System.currentTimeMillis();
 
 //		logger.info("生成sql:{} use:{}ms", selectSql, (start - end1));

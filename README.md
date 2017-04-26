@@ -6,7 +6,7 @@ https://github.com/west-orm
 
 ##一个服务
 # 最新版本
-		<west.version>0.3.4-SNAPSHOT</west.version>
+		<west.version>0.3.6-SNAPSHOT</west.version>
 
 		<dependency>
 			<groupId>com.bucuoa.west</groupId>
