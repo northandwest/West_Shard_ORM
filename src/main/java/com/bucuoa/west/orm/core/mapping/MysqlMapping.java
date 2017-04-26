@@ -1,6 +1,5 @@
 package com.bucuoa.west.orm.core.mapping;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,12 +24,26 @@ import com.bucuoa.west.orm.core.uitls.WStringUtils;
 
 public class MysqlMapping implements Mapping {
 	Logger logger = LoggerFactory.getLogger(this.getClass());
-
+	
+	private static Map<String,ITableInfo> cache = new HashMap<String,ITableInfo>();
+		
 	private <T> ITableInfo getTableInfo(T t) {
+		Class<? extends Object> class1 = t.getClass();
+		String cacheKey = class1.getCanonicalName();
+		//减少大量类的创建
+		ITableInfo iTableInfo = cache.get(cacheKey);
+		if(iTableInfo == null)
+		{
+			long start = System.currentTimeMillis();
+			iTableInfo = TableinfoFactory.create(t);
+			long end = System.currentTimeMillis();
+			
+			logger.trace("create {} TableInfo use:{}ms",cacheKey,(end-start));
 
-		ITableInfo info = TableinfoFactory.create(t);
+			cache.put(cacheKey, iTableInfo);
+		}
 
-		return info;
+		return iTableInfo;
 	}
 
 	@Override
