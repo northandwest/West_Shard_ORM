@@ -267,9 +267,8 @@ public class MysqlMapping implements Mapping {
 					}
 				}
 
-				delete.setWhere(where.toString());
 			}
-
+			delete.setWhere(where.toString());
 
 		} catch (Exception e) {
 			logger.error("buildDelete error", e);
