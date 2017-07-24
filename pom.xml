@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.bucuoa.west</groupId>
 	<artifactId>west-shard-orm</artifactId>
-	<version>0.3.7-RELEASE</version>
+	<version>0.4.0-RELEASE</version>
 	<packaging>jar</packaging>
 	<name>West :: ORM :: Core</name>
 	<description>West ORM</description>
@@ -123,12 +123,12 @@
 
 	<scm>
 		<connection>
-         scm:git:https://github.com/northandwest/WestShardORM-core.git
+         scm:git:https://github.com/northandwest/West_Shard_ORM.git
       </connection>
 		<developerConnection>
-         scm:git:https://github.com/northandwest/WestShardORM-core.git
+         scm:git:https://github.com/northandwest/West_Shard_ORM.git
       </developerConnection>
-		<url>https://github.com/northandwest/WestShardORM-core</url>
+		<url>https://github.com/northandwest/West_Shard_ORM</url>
 		<tag>v1.12</tag>
 	</scm>
 
