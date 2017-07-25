@@ -8,7 +8,7 @@
 	<packaging>jar</packaging>
 	<name>West :: ORM :: Core</name>
 	<description>West ORM</description>
-	<url>https://github.com/northandwest/WestShardORM-core</url>
+	<url>https://github.com/northandwest/West_Shard_ORM</url>
 
 	<properties>
 		<spring.version>4.1.3.RELEASE</spring.version>

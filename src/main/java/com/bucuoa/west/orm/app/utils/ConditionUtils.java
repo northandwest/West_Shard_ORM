@@ -11,26 +11,22 @@ import com.bucuoa.west.orm.app.common.Expression;
 public class ConditionUtils {
 	List<Expression> list;
 
-	 public ConditionUtils()
-	 {
-	 }
-	 
-	public ConditionUtils build()
-	{
-		list = new  ArrayList<Expression>();
-		 
-		 return this;
+	public ConditionUtils() {
 	}
-	
-	public  ConditionUtils add(String key,Object value)
-	{
-		Expression ex = new Expression(key,value);
+
+	public ConditionUtils build() {
+		list = new ArrayList<Expression>();
+
+		return this;
+	}
+
+	public ConditionUtils add(String key, Object value) {
+		Expression ex = new Expression(key, value);
 		list.add(ex);
 		return this;
 	}
-	
-	public List<Expression>  getConditions()
-	{
+
+	public List<Expression> getConditions() {
 		return list;
 	}
 }
