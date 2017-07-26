@@ -32,7 +32,6 @@ public class WPage implements  Serializable {
 	private String message = "";
 	
 	public WPage(){
-		
 	}
 
 	public List getData() {
@@ -43,21 +42,38 @@ public class WPage implements  Serializable {
 		this.data = data;
 	}
 	public boolean haveNextPage(){
-		return pageNo<totalPage;
+		return pageNo < totalPage;
 	}
 	public boolean havePrevPage(){
-		return pageNo>1;
+		return pageNo > 1;
 	}
 	public int getNextPageNo(){
-		return pageNo+1;
+		return pageNo >= totalPage ? totalPage:(getPageNo()+1);
 	}
 	public int getPrevPageNo(){
-		return pageNo-1<1?1:(pageNo-1);
+		return pageNo-1<1?1:(getPageNo()-1);
 	}
 	public int getPageNo() {
-		return pageNo<=0?1:pageNo;
+		 if(pageNo <= 0){
+			 pageNo = 1;
+		 }
+		 
+		 if(pageNo > getTotalPage())
+		 {
+			 pageNo = getTotalPage();
+		 }
+		 return pageNo;
 	}
 	public void setPageNo(int pageNo) {
+		if(pageNo < 1)
+		{
+			this.pageNo = 1;
+		}
+		if( pageNo > totalPage)
+		{
+			this.pageNo = totalPage;
+		}
+		
 		this.pageNo = pageNo;
 	}
 	public int getPageSize() {

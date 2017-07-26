@@ -6,7 +6,7 @@ public class Pager {
 
 	private int curPage = 1; // 当前页
 	private int pageSize = 10; // 每页多少行
-	private int totalRow; // 共多少行
+	private int totalCount; // 共多少行
 	private int start;// 当前页起始行
 	private int end;// 结束行
 	private int totalPage; // 共多少页
@@ -34,13 +34,13 @@ public class Pager {
 		} else {
 			start = pageSize * (curPage - 1);
 		}
-		end = start + pageSize > totalRow ? totalRow : start + pageSize;
+		end = start + pageSize > totalCount ? totalCount : start + pageSize;
 		this.curPage = curPage;
 	}
 
 	public void setTotalRow(int totalRow) {
 		totalPage = (totalRow + pageSize - 1) / pageSize;
-		this.totalRow = totalRow;
+		this.totalCount = totalRow;
 		if (totalPage < curPage) {
 			curPage = totalPage;
 			start = pageSize * (curPage - 1);
@@ -79,7 +79,7 @@ public class Pager {
 	}
 
 	public int getTotalRow() {
-		return totalRow;
+		return totalCount;
 	}
 
 	public int getTotalPage() {
