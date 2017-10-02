@@ -12,17 +12,19 @@ public class ConditionUtils {
 	List<Expression> list;
 
 	public ConditionUtils() {
-	}
-
-	public ConditionUtils build() {
 		list = new ArrayList<Expression>();
-
-		return this;
 	}
 
 	public ConditionUtils add(String key, Object value) {
-		Expression ex = new Expression(key, value);
-		list.add(ex);
+		if( key != null && !key.equals(""))
+		{
+			if(value == null)
+			{
+				value = "";
+			}
+			Expression ex = new Expression(key, value);
+			list.add(ex);
+		}
 		return this;
 	}
 

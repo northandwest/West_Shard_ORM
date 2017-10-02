@@ -7,7 +7,7 @@ public class TestConditionUtils {
 
 	public static void main(String[] args) {
 		ConditionUtils cu = new ConditionUtils();
-		List<Expression> conditions =cu.build().add("sex", 1).add("name", "wujiang").getConditions();
+		List<Expression> conditions =cu.add("sex", 1).add("name", "wujiang").getConditions();
 		
 		int size = conditions.size();
 	}

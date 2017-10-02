@@ -43,7 +43,7 @@ public class SQLFactory {
 
 		String sql = builder.buildInsert(t);
 		long end = System.currentTimeMillis();
-		logger.info("build sql:{} use:{}ms ", sql, (end - start));
+//		logger.info("build sql:{} use:{}ms ", sql, (end - start));
 		return sql;
 	}
 
@@ -54,7 +54,7 @@ public class SQLFactory {
 		String sql = builder.buildSelectCount(t, wheres);
 
 		long end = System.currentTimeMillis();
-		logger.info("build sql:{} use:{}ms", sql, (end - start));
+//		logger.info("build sql:{} use:{}ms", sql, (end - start));
 		return sql;
 	}
 
@@ -66,7 +66,7 @@ public class SQLFactory {
 		String sql = builder.buildSelect(t, wheres, orderBy, page);
 
 		long end = System.currentTimeMillis();
-		logger.info("build sql:{} use:{}ms", sql, (end - start));
+//		logger.info("build sql:{} use:{}ms", sql, (end - start));
 		return sql;
 	}
 
@@ -78,7 +78,7 @@ public class SQLFactory {
 		String sql = builder.buildSelect(t, orderBy, page);
 
 		long end = System.currentTimeMillis();
-		logger.info("build sql:{} use:{}ms", sql, (end - start));
+//		logger.info("build sql:{} use:{}ms", sql, (end - start));
 		return sql;
 	}
 
@@ -101,7 +101,7 @@ public class SQLFactory {
 		String sql = builder.buildUpdate(t);
 
 		long end = System.currentTimeMillis();
-		logger.info("build sql:{} use:{}ms", sql, (end - start));
+//		logger.info("build sql:{} use:{}ms", sql, (end - start));
 
 		return sql;
 	}
@@ -113,7 +113,7 @@ public class SQLFactory {
 		String sql = builder.buildUpdate(t, ids);
 
 		long end = System.currentTimeMillis();
-		logger.info("build sql:{} use:{}ms", sql, (end - start));
+//		logger.info("build sql:{} use:{}ms", sql, (end - start));
 
 		return sql;
 	}
@@ -125,7 +125,7 @@ public class SQLFactory {
 		String sql = builder.buildDelete(t);
 
 		long end = System.currentTimeMillis();
-		logger.info("build sql:{} use:{}ms", sql, (end - start));
+//		logger.info("build sql:{} use:{}ms", sql, (end - start));
 
 		return sql;
 	}
@@ -137,7 +137,7 @@ public class SQLFactory {
 		String sql = builder.buildDelete(t);
 
 		long end = System.currentTimeMillis();
-		logger.info("build sql:{} use:{}ms", sql, (end - start));
+//		logger.info("build sql:{} use:{}ms", sql, (end - start));
 
 		return sql;
 	}
