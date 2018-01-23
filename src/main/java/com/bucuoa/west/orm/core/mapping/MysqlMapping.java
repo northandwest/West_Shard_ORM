@@ -321,7 +321,7 @@ public class MysqlMapping implements Mapping {
 				Expression and = wheres.get(i);
 
 				if (i != 0) {
-					conditions.append(and.getType());
+					conditions.append(" ").append(and.getType());
 				}
 
 				conditions.append(" ").append(and.toString());
