@@ -1,12 +1,12 @@
 # west
 
-https://github.com/west-orm
+https://github.com/northandwest/West_Shard_ORM
 
 ##多个数据源动态指派DataSource
 
 ##一个服务
 # 最新版本
-		<west.version>0.3.7-RELEASE</west.version>
+		<west.version>0.6.0-RELEASE</west.version>
 
 		<dependency>
 			<groupId>com.bucuoa.west</groupId>
@@ -17,6 +17,7 @@ https://github.com/west-orm
 1. 配置数据源
 
 2. spring注入
+```
 	<bean id="sessionFactory" class="com.bucuoa.west.orm.core.SessionFactory">
 		<property name="dataSource" ref="robotdataSource" />
 	</bean>
@@ -24,8 +25,9 @@ https://github.com/west-orm
 	<bean id="excetueManager" class="com.bucuoa.west.orm.core.ExecuteManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+```
 3. 生成实体类
-
+```
 import java.io.Serializable;
 import java.util.Date;
 
@@ -97,8 +99,9 @@ public class Act  extends BaseShardEntity implements Serializable{
 
 	@Column(name = "uuid")
 	private String uuid; // uuid
+```
 4. 生成dao类
-
+```
 import org.springframework.stereotype.Repository;
 
 import com.bucuoa.bank.weixin.entity.ApplyDeposit;
@@ -108,9 +111,10 @@ import com.bucuoa.west.orm.app.extend.spring.SpringSingleBaseDao;
 public class ApplyDepositDao  extends SpringSingleBaseDao<ApplyDeposit, Long> implements ISingleBaseDao<ApplyDeposit, Long>{
 
 
-}		
+}
+```
 5. 生成Service类
-
+```
 import java.util.List;
 import java.util.Map;
 
@@ -131,3 +135,4 @@ public class ApplyDepositService  extends SingleBaseService<ApplyDeposit, Long> 
 		return dao;
 	}
 	}
+```
