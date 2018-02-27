@@ -114,9 +114,9 @@ public class ApplyDepositDao  extends SpringSingleBaseDao<ApplyDeposit, Long> im
 }
 
 如何支持多数据源
+```
 >spring管理连接池, 注入ExecuteManager，业务Dao类继承MutiliDataSourceSpringSingleBaseDao并注入ExecuteManager对象
 
-```
 5. 生成Service类
 ```
 import java.util.List;
