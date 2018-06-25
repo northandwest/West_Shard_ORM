@@ -28,5 +28,16 @@ public class ShopService extends SingleBaseService<Shop, Long>  {
 			System.out.println(shop.getName());
 		}
 	}
+	
+	public void getList2() {
+		
+//		getDao().queryListBean(clazz, sql, params);
+//		
+//		getDao().queryListMap(sql);
+		
+		String sql = "select * from shop where a={} and b={}";
+		getDao().queryListMap(sql, "a","b");
+		
+	}
 
 }

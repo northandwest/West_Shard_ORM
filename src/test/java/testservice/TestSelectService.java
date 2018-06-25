@@ -32,6 +32,8 @@ public class TestSelectService {
 		act.setId(1211212l);
 		act.setPlaceId(1022);
 		
+		
+		
 //		try {
 //			List<? extends Object> findListBy = service.findListBy(act);//.findEntityById(act);
 //		} catch (Exception e) {

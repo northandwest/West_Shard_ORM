@@ -8,6 +8,8 @@ import com.bucuoa.west.orm.core.base.IdObject;
 import com.bucuoa.west.orm.core.converter.ClassObjectConverter;
 import com.bucuoa.west.orm.core.mapping.SQLFactory;
 import com.bucuoa.west.orm.core.uitls.AnnoationUtil;
+import com.bucuoa.west.orm.core.uitls.SqlManager;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -303,10 +305,12 @@ public abstract class MutiliDataSourceSpringSingleBaseDao<T, PK   extends Serial
 		return count;
 	}
 
-	public List<T> queryListBean(Class<T> clazz, String sql) {
+	public List<T> queryListBean(Class<T> clazz, String sql,Object... params) {
 		List<T> list = null;
 		long start = System.currentTimeMillis();
 
+		sql = SqlManager.combile(sql, params);
+		
 		list = (List<T>) getExcetueManager().queryList(sql, clazz);
 		long end = System.currentTimeMillis();
 

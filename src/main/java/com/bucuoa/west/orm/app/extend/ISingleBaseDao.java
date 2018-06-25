@@ -14,7 +14,7 @@ public interface ISingleBaseDao<T, PK extends Serializable> extends IBaseDao<T, 
 
 	boolean deleteEntityById(PK id) throws Exception;
 
-	List<Map<String, Object>> queryListMap(String sql);
+	List<Map<String, Object>> queryListMap(String sql,Object... params);
 
 	List<T> findEntityList(List<Expression> where, OrderBy orderBy, WPage page);
 
@@ -22,7 +22,7 @@ public interface ISingleBaseDao<T, PK extends Serializable> extends IBaseDao<T, 
 
 	List<T> findEntityList(OrderBy orderBy, WPage page);
 
-	List<T> queryListBean(Class<T> clazz, String sql);
+	List<T> queryListBean(Class<T> clazz, String sql,Object... params);
 	
 	int getEntityCount(T t) throws Exception;
 

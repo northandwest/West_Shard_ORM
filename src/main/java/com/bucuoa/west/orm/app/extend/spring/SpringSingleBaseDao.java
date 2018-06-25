@@ -203,22 +203,22 @@ public class SpringSingleBaseDao<T, PK extends Serializable> extends WestDao<T, 
 		return count;
 	}
 
-	public List<T> queryListBean(Class<T> clazz, String sql) {
+	public List<T> queryListBean(Class<T> clazz, String sql,Object... params) {
 		List<T> list = null;
 		long start = System.currentTimeMillis();
 
-		list = (List<T>) excetueManager.queryList(sql, clazz);
+		list = (List<T>) excetueManager.queryList(sql, clazz,params);
 		long end = System.currentTimeMillis();
 
 		logger.trace("执行sql : " + sql + "use:" + (end - start) + "ms");
 		return list;
 	}
 	
-	public List<Map<String, Object>> queryListMap(String sql) {
+	public List<Map<String, Object>> queryListMap(String sql,Object... params) {
 		List<Map<String, Object>> queryListMap = null;
 		long start = System.currentTimeMillis();
 
-		queryListMap = excetueManager.queryListMap(sql);
+		queryListMap = excetueManager.queryListMap(sql,params);
 
 		long end = System.currentTimeMillis();
 
