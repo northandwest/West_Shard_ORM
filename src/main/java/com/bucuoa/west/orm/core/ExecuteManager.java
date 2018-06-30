@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 
 import com.bucuoa.west.orm.core.converter.DBObjectConverter;
 import com.bucuoa.west.orm.core.uitls.AnnoationUtil;
+import com.bucuoa.west.orm.core.uitls.SqlManager;
 import com.bucuoa.west.orm.shard.holder.DbMasterOrSlaveHolder;
 
 /**
@@ -270,6 +271,15 @@ public class ExecuteManager<T, PK> {
 
 
 	@SuppressWarnings("hiding")
+	public <T> List<T> queryList(String sql, Class<T> clazz,Object... params) {
+		
+		sql = SqlManager.combile(sql, params);
+		
+		return this.queryList(sql, clazz);
+	}
+	
+	
+	@SuppressWarnings("hiding")
 	public <T> List<T> queryList(String sql, Class<T> clazz) {
 		DbMasterOrSlaveHolder.initSlave();
 
@@ -307,7 +317,7 @@ public class ExecuteManager<T, PK> {
 		return listBean;
 	}
 
-	public <T> List<Map<String, Object>> queryListMap(String sql) {
+	public <T> List<Map<String, Object>> queryListMap(String sql,Object... params) {
 		DbMasterOrSlaveHolder.initSlave();
 
 		Connection conn = null;
@@ -321,7 +331,9 @@ public class ExecuteManager<T, PK> {
 			long start2 = System.currentTimeMillis();
 
 			conn = session.getConnection();
-
+			
+			sql = SqlManager.combile(sql, params);
+			
 			pst = conn.prepareStatement(sql);
 			rst = pst.executeQuery();
 

@@ -3,8 +3,12 @@ package com.bucuoa.west.orm.shard.algorithm;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class MurMurHash implements IAlgorithm { 
-  
+	Logger logger = LoggerFactory.getLogger(this.getClass());
+
     private static final int NODE_NUM = 256; // 每个机器节点关联的虚拟节点个数  
     boolean flag = false;  
     
@@ -126,6 +130,8 @@ public class MurMurHash implements IAlgorithm {
 		result.setDatasourceNo(Integer.parseInt(dNo));
 		result.setTableNo(Integer.parseInt(tNo));
 		
+//		logger.info(shardValue+"->"+result.getDatasourceNo()+"_"+result.getTableNo());
+
 		return result;
 	}  
 	
@@ -153,7 +159,9 @@ public class MurMurHash implements IAlgorithm {
     	for(int i = 0; i < 100; i ++){
         	long timew = System.nanoTime();
         	MurMurHash hash = new MurMurHash();
-        	hash.getShardResult(4,256,timew);
+        	ShardResult shardResult = hash.getShardResult(1,2,timew);
+        	
+        	System.out.println(timew+"->"+shardResult.getDatasourceNo()+"_"+shardResult.getTableNo());
     	}
     	
     	long time2 = System.currentTimeMillis();

@@ -14,6 +14,7 @@ public class ActService extends ShardBaseService<Act,Long> implements IShardBase
 	public IShardBaseDao getDao() {
 		return dao;
 	}
+	
 
 
 

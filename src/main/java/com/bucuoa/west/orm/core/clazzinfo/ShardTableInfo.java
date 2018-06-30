@@ -56,7 +56,7 @@ public class ShardTableInfo extends BaseTableInfo implements ITableInfo {
 		
 		DbShardHolder.setGroup(String.valueOf(router.getDbNums()));
 
-		logger.info("shard policy=>"+shardInfo.getPolicy()+","+newTableName + "==>db:" + router.getDbNums());
+		logger.info(shardInfo.getShardValue()+":shard policy=>"+shardInfo.getPolicy()+","+newTableName + "==>db:" + router.getDbNums());
 		
 		return newTableName;
 	}

@@ -73,9 +73,9 @@ public abstract class SingleBaseService<T, PK extends Serializable> {
 		return getDao().updateEntityIn(t, ids);
 	}
 	
-	public List<T> queryListBean(Class<T> clazz, String sql) 
+	public List<T> queryListBean(Class<T> clazz, String sql,Object... params) 
 	{
-		return getDao().queryListBean(clazz, sql);
+		return getDao().queryListBean(clazz, sql,params);
 	}
 //	 public List<T> findEntityList(String[] column, List<Expression> where,
 //	 OrderBy orderBy, WPage page) {

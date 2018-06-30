@@ -39,8 +39,8 @@ public class MysqlMapping implements Mapping {
 			long end = System.currentTimeMillis();
 			
 			logger.trace("create {} TableInfo use:{}ms",cacheKey,(end-start));
-
-			cache.put(cacheKey, iTableInfo);
+			//iTableInfo 带了分片的健 不能简单的缓存
+//			cache.put(cacheKey, iTableInfo);
 		}
 
 		return iTableInfo;

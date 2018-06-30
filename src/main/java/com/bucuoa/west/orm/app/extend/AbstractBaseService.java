@@ -72,8 +72,8 @@ public abstract class AbstractBaseService<T, PK extends Serializable> {
         return getDao().updateEntityIn(t, ids);
     }
 
-    public List<T> queryListBean(Class<T> clazz, String sql) {
-        return getDao().queryListBean(clazz, sql);
+    public List<T> queryListBean(Class<T> clazz, String sql,Object... params) {
+        return getDao().queryListBean(clazz, sql,params);
     }
 //	 public List<T> findEntityList(String[] column, List<Expression> where,
 //	 OrderBy orderBy, WPage page) {
