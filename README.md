@@ -6,7 +6,7 @@ https://github.com/northandwest/West_Shard_ORM
 
 ##一个服务
 # 最新版本
-		<west.version>0.6.5-RELEASE</west.version>
+		<west.version>0.6.6-RELEASE</west.version>
 
 		<dependency>
 			<groupId>com.bucuoa.west</groupId>
