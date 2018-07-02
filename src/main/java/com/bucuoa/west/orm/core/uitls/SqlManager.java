@@ -29,6 +29,7 @@ public class SqlManager {
             
             result.append(" ");
         }
+        result.append(sql);
 
         return (result.toString());
     }
