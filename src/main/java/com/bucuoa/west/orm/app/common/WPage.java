@@ -34,6 +34,54 @@ public class WPage implements  Serializable {
 	public WPage(){
 	}
 
+	public int getCount() {
+		return count;
+	}
+
+	public int getLast() {
+		return last;
+	}
+
+	public boolean isFirstPage() {
+		return firstPage;
+	}
+
+	public boolean isLastPage() {
+		return lastPage;
+	}
+
+	public String getFuncName() {
+		return funcName;
+	}
+
+	public int getFirst() {
+		return first;
+	}
+
+	public int getPrev() {
+		return prev;
+	}
+
+	public int getNext() {
+		return next;
+	}
+
+	public String getFuncParam() {
+		return funcParam;
+	}
+
+	public int getLength() {
+		return length;
+	}
+
+	public int getSlider() {
+		return slider;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
 	public List getData() {
 		return data;
 	}
